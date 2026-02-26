@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Human Verification</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  font-family:Arial;
+  background:linear-gradient(135deg,#f6c23e,#e74a3b);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+.box{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+  width:300px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+button{
+  margin-top:15px;
+  padding:10px;
+  width:100%;
+  border:none;
+  background:#e74a3b;
+  color:white;
+  cursor:pointer;
+}
+button:hover{
+  background:#c0392b;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Human Verification</h2>
+  <input type="checkbox" id="check"> I am not a robot
+  <button onclick="verify()">Verify & Continue</button>
+</div>
+
+<script>
+function verify(){
+  const checkbox = document.getElementById("check");
+
+  if(!checkbox.checked){
+    alert("Please verify first!");
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const encoded = params.get("data");
+
+  if(encoded){
+    const originalLink = atob(encoded);
+    window.location.href = originalLink;
+  } else {
+    alert("Invalid link!");
+  }
+}
+</script>
+
+</body>
+</html>
