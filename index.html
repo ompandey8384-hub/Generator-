@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Link Verification Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  font-family: Arial;
+  background: linear-gradient(135deg,#4e73df,#1cc88a);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+.box {
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  width:350px;
+  text-align:center;
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+input {
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+}
+button {
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  background:#4e73df;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+button:hover {
+  background:#2e59d9;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Generate Verification Link</h2>
+  <input type="text" id="link" placeholder="Enter your link">
+  <button onclick="generate()">Generate</button>
+  <p id="result"></p>
+</div>
+
+<script>
+function generate(){
+  const link = document.getElementById("link").value.trim();
+  if(!link){
+    alert("Enter link first!");
+    return;
+  }
+
+  const encoded = btoa(link);
+  const finalLink = window.location.origin + "/verify.html?data=" + encoded;
+
+  document.getElementById("result").innerHTML =
+    "<br><b>Your Link:</b><br><a href='"+finalLink+"' target='_blank'>" + finalLink + "</a>";
+}
+</script>
+
+</body>
+</html>
